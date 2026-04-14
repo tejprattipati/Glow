@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001 /* GlowLiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000001 /* GlowLiftApp.swift */; };
+		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000002 /* ContentView.swift */; };
+		AA000003 /* GlowTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000003 /* GlowTheme.swift */; };
+		AA000004 /* ExerciseDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000004 /* ExerciseDefinition.swift */; };
+		AA000005 /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000005 /* WorkoutTemplate.swift */; };
+		AA000006 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000006 /* WorkoutSession.swift */; };
+		AA000007 /* StreakModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000007 /* StreakModels.swift */; };
+		AA000008 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000008 /* ChatModels.swift */; };
+		AA000009 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000009 /* UserPreferences.swift */; };
+		AA000010 /* DefaultTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000010 /* DefaultTemplates.swift */; };
+		AA000011 /* WorkoutSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000011 /* WorkoutSequencer.swift */; };
+		AA000012 /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000012 /* StreakEngine.swift */; };
+		AA000013 /* RestTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000013 /* RestTimerManager.swift */; };
+		AA000014 /* LLMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000014 /* LLMService.swift */; };
+		AA000015 /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000015 /* ClaudeService.swift */; };
+		AA000016 /* GlowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000016 /* GlowCard.swift */; };
+		AA000017 /* ExerciseIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000017 /* ExerciseIcon.swift */; };
+		AA000018 /* FloatingRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000018 /* FloatingRestTimer.swift */; };
+		AA000019 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000019 /* HomeView.swift */; };
+		AA000020 /* WorkoutSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000020 /* WorkoutSelectionView.swift */; };
+		AA000021 /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000021 /* ActiveWorkoutView.swift */; };
+		AA000022 /* SetLoggingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000022 /* SetLoggingSheet.swift */; };
+		AA000023 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000023 /* HistoryView.swift */; };
+		AA000024 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000024 /* ProgressView.swift */; };
+		AA000025 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000025 /* ChatView.swift */; };
+		AA000026 /* ChatThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000026 /* ChatThreadView.swift */; };
+		AA000027 /* TemplateEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000027 /* TemplateEditorView.swift */; };
+		AA000028 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000028 /* SettingsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FA000001 /* GlowLiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowLiftApp.swift; sourceTree = "<group>"; };
+		FA000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FA000003 /* GlowTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowTheme.swift; sourceTree = "<group>"; };
+		FA000004 /* ExerciseDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDefinition.swift; sourceTree = "<group>"; };
+		FA000005 /* WorkoutTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplate.swift; sourceTree = "<group>"; };
+		FA000006 /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
+		FA000007 /* StreakModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakModels.swift; sourceTree = "<group>"; };
+		FA000008 /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
+		FA000009 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		FA000010 /* DefaultTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTemplates.swift; sourceTree = "<group>"; };
+		FA000011 /* WorkoutSequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSequencer.swift; sourceTree = "<group>"; };
+		FA000012 /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
+		FA000013 /* RestTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerManager.swift; sourceTree = "<group>"; };
+		FA000014 /* LLMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMService.swift; sourceTree = "<group>"; };
+		FA000015 /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
+		FA000016 /* GlowCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowCard.swift; sourceTree = "<group>"; };
+		FA000017 /* ExerciseIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseIcon.swift; sourceTree = "<group>"; };
+		FA000018 /* FloatingRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingRestTimer.swift; sourceTree = "<group>"; };
+		FA000019 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FA000020 /* WorkoutSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSelectionView.swift; sourceTree = "<group>"; };
+		FA000021 /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
+		FA000022 /* SetLoggingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLoggingSheet.swift; sourceTree = "<group>"; };
+		FA000023 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		FA000024 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		FA000025 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		FA000026 /* ChatThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThreadView.swift; sourceTree = "<group>"; };
+		FA000027 /* TemplateEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorView.swift; sourceTree = "<group>"; };
+		FA000028 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FAPROD001 /* GlowLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlowLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BPFP0001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		GRPROOT /* GlowLift */ = {
+			isa = PBXGroup;
+			children = (
+				GRPMAIN /* GlowLift */,
+				GRPPRODS /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GRPPRODS /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAPROD001 /* GlowLift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GRPMAIN /* GlowLift */ = {
+			isa = PBXGroup;
+			children = (
+				FA000001 /* GlowLiftApp.swift */,
+				FA000002 /* ContentView.swift */,
+				GRPTHEME /* Theme */,
+				GRPMODELS /* Models */,
+				GRPSERVICES /* Services */,
+				GRPSEED /* SeedData */,
+				GRPCOMPONENTS /* Components */,
+				GRPVIEWS /* Views */,
+			);
+			path = GlowLift;
+			sourceTree = "<group>";
+		};
+		GRPTHEME /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				FA000003 /* GlowTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		GRPMODELS /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA000004 /* ExerciseDefinition.swift */,
+				FA000005 /* WorkoutTemplate.swift */,
+				FA000006 /* WorkoutSession.swift */,
+				FA000007 /* StreakModels.swift */,
+				FA000008 /* ChatModels.swift */,
+				FA000009 /* UserPreferences.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		GRPSERVICES /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FA000011 /* WorkoutSequencer.swift */,
+				FA000012 /* StreakEngine.swift */,
+				FA000013 /* RestTimerManager.swift */,
+				FA000014 /* LLMService.swift */,
+				FA000015 /* ClaudeService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		GRPSEED /* SeedData */ = {
+			isa = PBXGroup;
+			children = (
+				FA000010 /* DefaultTemplates.swift */,
+			);
+			path = SeedData;
+			sourceTree = "<group>";
+		};
+		GRPCOMPONENTS /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FA000016 /* GlowCard.swift */,
+				FA000017 /* ExerciseIcon.swift */,
+				FA000018 /* FloatingRestTimer.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		GRPVIEWS /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				GRPHOME /* Home */,
+				GRPTRAIN /* Train */,
+				GRPHISTORY /* History */,
+				GRPPROGRESS /* Progress */,
+				GRPCHAT /* Chat */,
+				GRPTEMPLATES /* Templates */,
+				GRPSETTINGS /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		GRPHOME /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FA000019 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		GRPTRAIN /* Train */ = {
+			isa = PBXGroup;
+			children = (
+				FA000020 /* WorkoutSelectionView.swift */,
+				FA000021 /* ActiveWorkoutView.swift */,
+				FA000022 /* SetLoggingSheet.swift */,
+			);
+			path = Train;
+			sourceTree = "<group>";
+		};
+		GRPHISTORY /* History */ = {
+			isa = PBXGroup;
+			children = (
+				FA000023 /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		GRPPROGRESS /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				FA000024 /* ProgressView.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		GRPCHAT /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				FA000025 /* ChatView.swift */,
+				FA000026 /* ChatThreadView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		GRPTEMPLATES /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				FA000027 /* TemplateEditorView.swift */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		GRPSETTINGS /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FA000028 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TGTMAIN /* GlowLift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCLMAIN /* Build configuration list for PBXNativeTarget "GlowLift" */;
+			buildPhases = (
+				BPSP0001 /* Sources */,
+				BPFP0001 /* Frameworks */,
+				BPRP0001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GlowLift;
+			productName = GlowLift;
+			productReference = FAPROD001 /* GlowLift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PROJROOT /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					TGTMAIN = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = BCLPROJ /* Build configuration list for PBXProject "GlowLift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = GRPROOT;
+			productRefGroup = GRPPRODS /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TGTMAIN /* GlowLift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BPRP0001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BPSP0001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001 /* GlowLiftApp.swift in Sources */,
+				AA000002 /* ContentView.swift in Sources */,
+				AA000003 /* GlowTheme.swift in Sources */,
+				AA000004 /* ExerciseDefinition.swift in Sources */,
+				AA000005 /* WorkoutTemplate.swift in Sources */,
+				AA000006 /* WorkoutSession.swift in Sources */,
+				AA000007 /* StreakModels.swift in Sources */,
+				AA000008 /* ChatModels.swift in Sources */,
+				AA000009 /* UserPreferences.swift in Sources */,
+				AA000010 /* DefaultTemplates.swift in Sources */,
+				AA000011 /* WorkoutSequencer.swift in Sources */,
+				AA000012 /* StreakEngine.swift in Sources */,
+				AA000013 /* RestTimerManager.swift in Sources */,
+				AA000014 /* LLMService.swift in Sources */,
+				AA000015 /* ClaudeService.swift in Sources */,
+				AA000016 /* GlowCard.swift in Sources */,
+				AA000017 /* ExerciseIcon.swift in Sources */,
+				AA000018 /* FloatingRestTimer.swift in Sources */,
+				AA000019 /* HomeView.swift in Sources */,
+				AA000020 /* WorkoutSelectionView.swift in Sources */,
+				AA000021 /* ActiveWorkoutView.swift in Sources */,
+				AA000022 /* SetLoggingSheet.swift in Sources */,
+				AA000023 /* HistoryView.swift in Sources */,
+				AA000024 /* ProgressView.swift in Sources */,
+				AA000025 /* ChatView.swift in Sources */,
+				AA000026 /* ChatThreadView.swift in Sources */,
+				AA000027 /* TemplateEditorView.swift in Sources */,
+				AA000028 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BCDBG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BCREL /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCTDBG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.glowlift.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BCTREL /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.glowlift.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCLPROJ /* Build configuration list for PBXProject "GlowLift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCDBG /* Debug */,
+				BCREL /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCLMAIN /* Build configuration list for PBXNativeTarget "GlowLift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCTDBG /* Debug */,
+				BCTREL /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = PROJROOT /* Project object */;
+}
