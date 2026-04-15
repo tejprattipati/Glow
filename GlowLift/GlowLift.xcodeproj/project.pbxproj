@@ -97,6 +97,7 @@
 				FA000016 /* GlowCard.swift */,
 				FA000017 /* ExerciseIcon.swift */,
 				FA000018 /* FloatingRestTimer.swift */,
+				FA000029 /* GlowLiftLogo.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
