@@ -12,102 +12,124 @@ struct ActiveWorkoutView: View {
     @State private var showFinishAlert = false
     @State private var elapsedSeconds: Int = 0
     @State private var elapsedTimer: Timer?
-    @State private var showAddSet = false
     @State private var selectedExercise: ExerciseSession?
 
     private var sortedExercises: [ExerciseSession] {
         session.sortedExercises
     }
 
-    private var currentExercise: ExerciseSession? {
-        guard activeExerciseIndex < sortedExercises.count else { return nil }
-        return sortedExercises[activeExerciseIndex]
-    }
-
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .top) {
-                GlowTheme.Colors.gradientBackground.ignoresSafeArea()
-
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: GlowTheme.Spacing.lg) {
-                        workoutHeader
-                        exerciseList
-                        finishButton
-                        Spacer(minLength: 100)
-                    }
-                    .padding(.horizontal, GlowTheme.Spacing.md)
-                    .padding(.top, GlowTheme.Spacing.sm)
-                }
-
-                VStack {
-                    FloatingRestTimerBar(timer: timerManager)
-                    Spacer()
-                }
-            }
-            .navigationTitle(session.workoutName)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { showFinishAlert = true }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(GlowTheme.Colors.textSecondary)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Text(elapsedDisplay)
-                        .font(GlowTheme.Fonts.mono(14))
-                        .foregroundColor(GlowTheme.Colors.textTertiary)
-                }
-            }
-            .alert("Finish Workout?", isPresented: $showFinishAlert) {
-                Button("Save & Finish") { finishWorkout() }
-                Button("Discard", role: .destructive) { discardAndDismiss() }
-                Button("Keep Training", role: .cancel) {}
-            } message: {
-                Text("You've logged \(session.totalSets) sets.")
-            }
-            .sheet(item: $selectedExercise) { exercise in
-                SetLoggingSheet(
-                    exercise: exercise,
-                    session: session,
-                    onSetLogged: { weight, reps in
-                        logSet(exercise: exercise, weight: weight, reps: reps)
-                    }
-                )
-            }
+            mainContent
+                .navigationTitle(session.workoutName)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbarColorScheme(.dark, for: .navigationBar)
+                .navigationBarBackButtonHidden(true)
+                .toolbar { toolbarItems }
+                .alert("Finish Workout?", isPresented: $showFinishAlert, actions: finishAlertButtons, message: finishAlertMessage)
+                .sheet(item: $selectedExercise, content: setLoggingSheet)
         }
         .onAppear { startElapsedTimer() }
         .onDisappear { elapsedTimer?.invalidate() }
+    }
+
+    private var mainContent: some View {
+        ZStack(alignment: .top) {
+            GlowTheme.Colors.gradientBackground.ignoresSafeArea()
+            scrollContent
+            VStack {
+                FloatingRestTimerBar(timer: timerManager)
+                Spacer()
+            }
+        }
+    }
+
+    private var scrollContent: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: GlowTheme.Spacing.lg) {
+                workoutHeader
+                exerciseList
+                finishButton
+                Spacer(minLength: 100)
+            }
+            .padding(.horizontal, GlowTheme.Spacing.md)
+            .padding(.top, GlowTheme.Spacing.sm)
+        }
+    }
+
+    @ToolbarContentBuilder
+    private var toolbarItems: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button(action: { showFinishAlert = true }) {
+                Image(systemName: "xmark")
+                    .foregroundColor(GlowTheme.Colors.textSecondary)
+            }
+        }
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Text(elapsedDisplay)
+                .font(GlowTheme.Fonts.mono(14))
+                .foregroundColor(GlowTheme.Colors.textTertiary)
+        }
+    }
+
+    @ViewBuilder
+    private func finishAlertButtons() -> some View {
+        Button("Save & Finish") { finishWorkout() }
+        Button("Discard", role: .destructive) { discardAndDismiss() }
+        Button("Keep Training", role: .cancel) {}
+    }
+
+    private func finishAlertMessage() -> some View {
+        Text("You've logged \(session.totalSets) sets.")
+    }
+
+    private func setLoggingSheet(for exercise: ExerciseSession) -> some View {
+        SetLoggingSheet(
+            exercise: exercise,
+            session: session,
+            onSetLogged: { weight, reps in logSet(exercise: exercise, weight: weight, reps: reps) }
+        )
     }
 
     // MARK: - Header
     private var workoutHeader: some View {
         GlowCard(glowColor: Color(hex: session.type.colorHex), glowIntensity: 0.6) {
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(session.type.emoji)
-                        Text(session.type.rawValue)
-                            .font(GlowTheme.Fonts.caption(11))
-                            .foregroundColor(GlowTheme.Colors.textTertiary)
-                            .textCase(.uppercase)
-                            .tracking(1.2)
-                    }
-                    Text(session.workoutName)
-                        .font(GlowTheme.Fonts.headline())
-                        .foregroundColor(.white)
-                }
+                workoutHeaderLeading
                 Spacer()
-                VStack(alignment: .trailing, spacing: 4) {
-                    StatChip(value: "\(session.totalSets)", label: "Sets", color: Color(hex: session.type.colorHex))
-                    Text("\(sortedExercises.filter { $0.isCompleted }.count)/\(sortedExercises.count) done")
-                        .font(GlowTheme.Fonts.caption(11))
-                        .foregroundColor(GlowTheme.Colors.textTertiary)
-                }
+                workoutHeaderTrailing
             }
+        }
+    }
+
+    private var workoutHeaderLeading: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text(session.type.emoji)
+                Text(session.type.rawValue)
+                    .font(GlowTheme.Fonts.caption(11))
+                    .foregroundColor(GlowTheme.Colors.textTertiary)
+                    .textCase(.uppercase)
+                    .tracking(1.2)
+            }
+            Text(session.workoutName)
+                .font(GlowTheme.Fonts.headline())
+                .foregroundColor(.white)
+        }
+    }
+
+    private var workoutHeaderTrailing: some View {
+        VStack(alignment: .trailing, spacing: 4) {
+            StatChip(
+                value: "\(session.totalSets)",
+                label: "Sets",
+                color: Color(hex: session.type.colorHex)
+            )
+            let done = sortedExercises.filter { $0.isCompleted }.count
+            let total = sortedExercises.count
+            Text("\(done)/\(total) done")
+                .font(GlowTheme.Fonts.caption(11))
+                .foregroundColor(GlowTheme.Colors.textTertiary)
         }
     }
 
@@ -131,24 +153,12 @@ struct ActiveWorkoutView: View {
                 activeExerciseIndex = index
                 selectedExercise = exercise
             },
-            onStartTimer: { seconds in
-                timerManager.start(seconds: seconds)
-            },
-            onMarkComplete: {
-                withAnimation {
-                    exercise.isCompleted = true
-                    exercise.completedAt = Date()
-                    let count = sortedExercises.count
-                    if index < count - 1 {
-                        activeExerciseIndex = index + 1
-                    }
-                    try? context.save()
-                }
-            }
+            onStartTimer: { seconds in timerManager.start(seconds: seconds) },
+            onMarkComplete: { markComplete(exercise: exercise, index: index) }
         )
     }
 
-    // MARK: - Finish
+    // MARK: - Finish Button
     private var finishButton: some View {
         GlowButton(title: "Finish Workout", icon: "checkmark.circle.fill") {
             showFinishAlert = true
@@ -167,10 +177,22 @@ struct ActiveWorkoutView: View {
 
     private func startElapsedTimer() {
         let start = session.startedAt
+        elapsedSeconds = Int(Date().timeIntervalSince(start))
         elapsedTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
             elapsedSeconds = Int(Date().timeIntervalSince(start))
         }
-        elapsedSeconds = Int(Date().timeIntervalSince(start))
+    }
+
+    private func markComplete(exercise: ExerciseSession, index: Int) {
+        withAnimation {
+            exercise.isCompleted = true
+            exercise.completedAt = Date()
+            let count = sortedExercises.count
+            if index < count - 1 {
+                activeExerciseIndex = index + 1
+            }
+            try? context.save()
+        }
     }
 
     private func logSet(exercise: ExerciseSession, weight: Double, reps: Int) {
@@ -179,14 +201,10 @@ struct ActiveWorkoutView: View {
         entry.exerciseSession = exercise
         exercise.sets.append(entry)
         try? context.save()
-
-        // Haptic
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-
-        // Auto-start rest timer
-        let restSeconds = exercise.sets.isEmpty ? 120 : exercise.category.defaultRestSeconds
-        timerManager.start(seconds: restSeconds)
+        let restSecs = exercise.category.defaultRestSeconds
+        timerManager.start(seconds: restSecs)
     }
 
     private func finishWorkout() {
@@ -204,6 +222,8 @@ struct ActiveWorkoutView: View {
 }
 
 // MARK: - Exercise Card
+// Each sub-view is extracted into a named computed property to keep the
+// type-checker's constraint system small per expression.
 struct ExerciseCard: View {
     var exercise: ExerciseSession
     let isActive: Bool
@@ -212,107 +232,145 @@ struct ExerciseCard: View {
     let onStartTimer: (Int) -> Void
     let onMarkComplete: () -> Void
 
-    @State private var isExpanded = true
+    @State private var isExpanded: Bool = true
 
-    private var lastSession: ExerciseSession? {
+    // Typed helpers — avoid inline ternaries inside @ViewBuilder
+    private var accentColor: Color {
+        if isActive { return GlowTheme.Colors.purple }
+        if exercise.isCompleted { return GlowTheme.Colors.success }
+        return GlowTheme.Colors.textMuted
+    }
+    private var glowIntensity: Double { isActive ? 0.8 : 0.2 }
+
+    private var lastPriorSession: ExerciseSession? {
         WorkoutSequencer.lastExerciseSession(named: exercise.exerciseName, context: context)
     }
 
     var body: some View {
-        let accentColor = isActive ? GlowTheme.Colors.purple : (exercise.isCompleted ? GlowTheme.Colors.success : GlowTheme.Colors.textMuted)
+        GlowCard(glowColor: accentColor, glowIntensity: glowIntensity, showBorder: isActive) {
+            cardContent
+        }
+        .animation(.easeInOut(duration: 0.2), value: isExpanded)
+    }
 
-        GlowCard(glowColor: accentColor, glowIntensity: isActive ? 0.8 : 0.2, showBorder: isActive) {
-            VStack(spacing: GlowTheme.Spacing.sm) {
-                // Header row
-                HStack {
-                    ExerciseIcon(category: exercise.category, size: 38)
+    @ViewBuilder
+    private var cardContent: some View {
+        VStack(spacing: GlowTheme.Spacing.sm) {
+            headerRow
+            if isExpanded {
+                expandedSection
+            }
+        }
+    }
 
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(exercise.exerciseName)
-                            .font(GlowTheme.Fonts.subheadline())
-                            .foregroundColor(.white)
-                        if let last = lastSession, let topSet = last.topSet {
-                            Text("Last: \(topSet.displayString) · \(last.setCount) sets")
-                                .font(GlowTheme.Fonts.caption(11))
-                                .foregroundColor(GlowTheme.Colors.textTertiary)
-                        }
-                    }
+    private var headerRow: some View {
+        HStack {
+            ExerciseIcon(category: exercise.category, size: 38)
+            nameColumn
+            Spacer()
+            headerTrailing
+        }
+    }
 
-                    Spacer()
+    @ViewBuilder
+    private var nameColumn: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(exercise.exerciseName)
+                .font(GlowTheme.Fonts.subheadline())
+                .foregroundColor(.white)
+            if let last = lastPriorSession, let top = last.topSet {
+                Text("Last: \(top.displayString) · \(last.setCount) sets")
+                    .font(GlowTheme.Fonts.caption(11))
+                    .foregroundColor(GlowTheme.Colors.textTertiary)
+            }
+        }
+    }
 
-                    HStack(spacing: GlowTheme.Spacing.sm) {
-                        if exercise.isCompleted {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(GlowTheme.Colors.success)
-                        }
-                        Button(action: { withAnimation { isExpanded.toggle() } }) {
-                            Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                                .foregroundColor(GlowTheme.Colors.textTertiary)
-                                .font(.system(size: 12))
-                        }
-                    }
-                }
+    @ViewBuilder
+    private var headerTrailing: some View {
+        HStack(spacing: GlowTheme.Spacing.sm) {
+            if exercise.isCompleted {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(GlowTheme.Colors.success)
+            }
+            Button(action: { withAnimation { isExpanded.toggle() } }) {
+                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                    .foregroundColor(GlowTheme.Colors.textTertiary)
+                    .font(.system(size: 12))
+            }
+        }
+    }
 
-                if isExpanded {
-                    Divider().background(GlowTheme.Colors.textMuted.opacity(0.3))
+    @ViewBuilder
+    private var expandedSection: some View {
+        VStack(spacing: GlowTheme.Spacing.sm) {
+            Divider().background(GlowTheme.Colors.textMuted.opacity(0.3))
+            setsList
+            actionRow
+        }
+    }
 
-                    // Sets list
-                    if !exercise.sortedSets.isEmpty {
-                        VStack(spacing: 4) {
-                            ForEach(exercise.sortedSets) { set in
-                                SetRow(set: set, onDelete: {
-                                    exercise.sets.removeAll { $0.id == set.id }
-                                    try? context.save()
-                                })
-                            }
-                        }
-                    }
-
-                    // Action buttons
-                    HStack(spacing: GlowTheme.Spacing.sm) {
-                        // Add set
-                        Button(action: onAddSet) {
-                            Label("+ Set", systemImage: "plus")
-                                .font(GlowTheme.Fonts.subheadline(14))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 14)
-                                .padding(.vertical, 8)
-                                .background(Capsule().fill(GlowTheme.Colors.purpleDim))
-                        }
-
-                        // Rest timer
-                        Button(action: { onStartTimer(exercise.category.defaultRestSeconds) }) {
-                            Label("\(exercise.category.defaultRestSeconds / 60):\(String(format: "%02d", exercise.category.defaultRestSeconds % 60))", systemImage: "timer")
-                                .font(GlowTheme.Fonts.caption(12))
-                                .foregroundColor(GlowTheme.Colors.textSecondary)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 8)
-                                .background(
-                                    Capsule().fill(GlowTheme.Colors.surfaceElevated)
-                                )
-                        }
-
-                        Spacer()
-
-                        // Done
-                        if !exercise.isCompleted {
-                            Button(action: onMarkComplete) {
-                                Text("Done")
-                                    .font(GlowTheme.Fonts.caption(12))
-                                    .foregroundColor(GlowTheme.Colors.success)
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 8)
-                                    .background(
-                                        Capsule()
-                                            .stroke(GlowTheme.Colors.success.opacity(0.4), lineWidth: 1)
-                                    )
-                            }
-                        }
-                    }
+    @ViewBuilder
+    private var setsList: some View {
+        if !exercise.sortedSets.isEmpty {
+            VStack(spacing: 4) {
+                ForEach(exercise.sortedSets) { set in
+                    SetRow(set: set, onDelete: {
+                        exercise.sets.removeAll { $0.id == set.id }
+                        try? context.save()
+                    })
                 }
             }
         }
-        .animation(.easeInOut(duration: 0.2), value: isExpanded)
+    }
+
+    private var actionRow: some View {
+        HStack(spacing: GlowTheme.Spacing.sm) {
+            addSetButton
+            restTimerButton
+            Spacer()
+            if !exercise.isCompleted {
+                doneButton
+            }
+        }
+    }
+
+    private var addSetButton: some View {
+        Button(action: onAddSet) {
+            Label("+ Set", systemImage: "plus")
+                .font(GlowTheme.Fonts.subheadline(14))
+                .foregroundColor(.white)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(Capsule().fill(GlowTheme.Colors.purpleDim))
+        }
+    }
+
+    private var restTimerButton: some View {
+        let secs = exercise.category.defaultRestSeconds
+        let label = "\(secs / 60):\(String(format: "%02d", secs % 60))"
+        return Button(action: { onStartTimer(secs) }) {
+            Label(label, systemImage: "timer")
+                .font(GlowTheme.Fonts.caption(12))
+                .foregroundColor(GlowTheme.Colors.textSecondary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(Capsule().fill(GlowTheme.Colors.surfaceElevated))
+        }
+    }
+
+    private var doneButton: some View {
+        Button(action: onMarkComplete) {
+            Text("Done")
+                .font(GlowTheme.Fonts.caption(12))
+                .foregroundColor(GlowTheme.Colors.success)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(
+                    Capsule()
+                        .stroke(GlowTheme.Colors.success.opacity(0.4), lineWidth: 1)
+                )
+        }
     }
 }
 
@@ -327,17 +385,13 @@ struct SetRow: View {
                 .font(GlowTheme.Fonts.caption(12))
                 .foregroundColor(GlowTheme.Colors.textTertiary)
                 .frame(width: 44, alignment: .leading)
-
             Text(set.displayString)
                 .font(GlowTheme.Fonts.subheadline(14))
                 .foregroundColor(GlowTheme.Colors.textPrimary)
-
             Spacer()
-
             Text("\(Int(set.volume)) vol")
                 .font(GlowTheme.Fonts.caption(11))
                 .foregroundColor(GlowTheme.Colors.textMuted)
-
             Button(action: onDelete) {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundColor(GlowTheme.Colors.textMuted)
