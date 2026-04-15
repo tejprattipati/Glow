@@ -116,30 +116,36 @@ struct ActiveWorkoutView: View {
         VStack(spacing: GlowTheme.Spacing.sm) {
             SectionHeader(title: "Exercises")
             ForEach(Array(sortedExercises.enumerated()), id: \.element.id) { index, exercise in
-                ExerciseCard(
-                    exercise: exercise,
-                    isActive: index == activeExerciseIndex,
-                    context: context,
-                    onAddSet: {
-                        activeExerciseIndex = index
-                        selectedExercise = exercise
-                    },
-                    onStartTimer: { seconds in
-                        timerManager.start(seconds: seconds)
-                    },
-                    onMarkComplete: {
-                        withAnimation {
-                            exercise.isCompleted = true
-                            exercise.completedAt = Date()
-                            if index < sortedExercises.count - 1 {
-                                activeExerciseIndex = index + 1
-                            }
-                            try? context.save()
-                        }
-                    }
-                )
+                exerciseCardRow(exercise, index: index)
             }
         }
+    }
+
+    @ViewBuilder
+    private func exerciseCardRow(_ exercise: ExerciseSession, index: Int) -> some View {
+        ExerciseCard(
+            exercise: exercise,
+            isActive: index == activeExerciseIndex,
+            context: context,
+            onAddSet: {
+                activeExerciseIndex = index
+                selectedExercise = exercise
+            },
+            onStartTimer: { seconds in
+                timerManager.start(seconds: seconds)
+            },
+            onMarkComplete: {
+                withAnimation {
+                    exercise.isCompleted = true
+                    exercise.completedAt = Date()
+                    let count = sortedExercises.count
+                    if index < count - 1 {
+                        activeExerciseIndex = index + 1
+                    }
+                    try? context.save()
+                }
+            }
+        )
     }
 
     // MARK: - Finish
@@ -199,7 +205,7 @@ struct ActiveWorkoutView: View {
 
 // MARK: - Exercise Card
 struct ExerciseCard: View {
-    @ObservedObject var exercise: ExerciseSession
+    var exercise: ExerciseSession
     let isActive: Bool
     let context: ModelContext
     let onAddSet: () -> Void

@@ -151,10 +151,9 @@ struct HomeView: View {
                                 Text("Last trained")
                                     .font(GlowTheme.Fonts.caption(11))
                                     .foregroundColor(GlowTheme.Colors.textTertiary)
-                                Text(lastSession.map { relativeDate($0.completedAt ?? $0.startedAt) } ?? "")
+                                Text(relativeDate(last.completedAt ?? last.startedAt))
                                     .font(GlowTheme.Fonts.caption(12))
                                     .foregroundColor(GlowTheme.Colors.textSecondary)
-                                let _ = last  // suppress warning
                             }
                         }
                     }
@@ -163,9 +162,8 @@ struct HomeView: View {
                         GlowButton(title: "Start \(suggestedNext.rawValue)", icon: "play.fill") {
                             startSuggestedWorkout()
                         }
-                        GlowButton(title: "Choose", icon: "list.bullet", action: { showWorkoutPicker = true })
+                        GlowButton(title: "Choose", icon: "list.bullet", action: { showWorkoutPicker = true }, style: .secondary, isCompact: true)
                             .frame(width: 110)
-                            .buttonStyle(GlowPressStyle())
                     }
                 }
             }

@@ -5,7 +5,7 @@ struct ChatThreadView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
 
-    @ObservedObject var thread: ChatThread
+    var thread: ChatThread
     let recentSessions: [WorkoutSession]
 
     @State private var inputText: String = ""
