@@ -79,16 +79,7 @@ struct HomeView: View {
                     .foregroundColor(GlowTheme.Colors.textPrimary)
             }
             Spacer()
-            // Glow orb icon
-            ZStack {
-                Circle()
-                    .fill(GlowTheme.Colors.purpleGlow)
-                    .frame(width: 56, height: 56)
-                    .blur(radius: 8)
-                Image(systemName: "bolt.fill")
-                    .font(.system(size: 24, weight: .black))
-                    .foregroundColor(GlowTheme.Colors.purpleLight)
-            }
+            GlowLiftLogo(size: 48)
         }
     }
 
@@ -162,8 +153,22 @@ struct HomeView: View {
                         GlowButton(title: "Start \(suggestedNext.rawValue)", icon: "play.fill") {
                             startSuggestedWorkout()
                         }
-                        GlowButton(title: "Choose", icon: "list.bullet", action: { showWorkoutPicker = true }, style: .secondary, isCompact: true)
-                            .frame(width: 110)
+                        // Icon-only choose button — avoids two-line text wrap
+                        Button(action: { showWorkoutPicker = true }) {
+                            Image(systemName: "list.bullet")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(GlowTheme.Colors.purple)
+                                .frame(width: 44, height: 44)
+                                .background(
+                                    RoundedRectangle(cornerRadius: GlowTheme.Radius.md)
+                                        .fill(GlowTheme.Colors.surfaceElevated)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: GlowTheme.Radius.md)
+                                                .stroke(GlowTheme.Colors.purple.opacity(0.35), lineWidth: 1)
+                                        )
+                                )
+                        }
+                        .buttonStyle(GlowPressStyle())
                     }
                 }
             }

@@ -25,6 +25,7 @@
 		AA000016 /* GlowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000016 /* GlowCard.swift */; };
 		AA000017 /* ExerciseIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000017 /* ExerciseIcon.swift */; };
 		AA000018 /* FloatingRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000018 /* FloatingRestTimer.swift */; };
+		AA000029 /* GlowLiftLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000029 /* GlowLiftLogo.swift */; };
 		AA000019 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000019 /* HomeView.swift */; };
 		AA000020 /* WorkoutSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000020 /* WorkoutSelectionView.swift */; };
 		AA000021 /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000021 /* ActiveWorkoutView.swift */; };
@@ -56,6 +57,7 @@
 		FA000016 /* GlowCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowCard.swift; sourceTree = "<group>"; };
 		FA000017 /* ExerciseIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseIcon.swift; sourceTree = "<group>"; };
 		FA000018 /* FloatingRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingRestTimer.swift; sourceTree = "<group>"; };
+		FA000029 /* GlowLiftLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowLiftLogo.swift; sourceTree = "<group>"; };
 		FA000019 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA000020 /* WorkoutSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSelectionView.swift; sourceTree = "<group>"; };
 		FA000021 /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				AA000016 /* GlowCard.swift in Sources */,
 				AA000017 /* ExerciseIcon.swift in Sources */,
 				AA000018 /* FloatingRestTimer.swift in Sources */,
+				AA000029 /* GlowLiftLogo.swift in Sources */,
 				AA000019 /* HomeView.swift in Sources */,
 				AA000020 /* WorkoutSelectionView.swift in Sources */,
 				AA000021 /* ActiveWorkoutView.swift in Sources */,
