@@ -206,9 +206,7 @@ struct ChatThreadView: View {
             Button(action: sendMessage) {
                 ZStack {
                     Circle()
-                        .fill(inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSending
-                              ? GlowTheme.Colors.surfaceElevated
-                              : GlowTheme.Colors.gradientPurple)
+                        .fill(sendButtonFill)
                         .frame(width: 40, height: 40)
                     if isSending {
                         ProgressView()
@@ -229,6 +227,14 @@ struct ChatThreadView: View {
         .overlay(alignment: .top) {
             Divider().background(GlowTheme.Colors.textMuted.opacity(0.2))
         }
+    }
+
+    private var sendButtonFill: AnyShapeStyle {
+        let isDisabled = inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSending
+        if isDisabled {
+            return AnyShapeStyle(GlowTheme.Colors.surfaceElevated)
+        }
+        return AnyShapeStyle(GlowTheme.Colors.gradientPurple)
     }
 
     // MARK: - Send

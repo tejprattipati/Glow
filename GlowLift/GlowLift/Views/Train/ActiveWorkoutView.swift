@@ -18,6 +18,12 @@ struct ActiveWorkoutView: View {
         session.sortedExercises
     }
 
+    private var indexedExercises: [IndexedExercise] {
+        sortedExercises.enumerated().map { offset, exercise in
+            IndexedExercise(index: offset, exercise: exercise)
+        }
+    }
+
     var body: some View {
         NavigationStack {
             mainContent
@@ -137,8 +143,8 @@ struct ActiveWorkoutView: View {
     private var exerciseList: some View {
         VStack(spacing: GlowTheme.Spacing.sm) {
             SectionHeader(title: "Exercises")
-            ForEach(Array(sortedExercises.enumerated()), id: \.element.id) { index, exercise in
-                exerciseCardRow(exercise, index: index)
+            ForEach(indexedExercises) { item in
+                exerciseCardRow(item.exercise, index: item.index)
             }
         }
     }
@@ -218,6 +224,15 @@ struct ActiveWorkoutView: View {
         context.delete(session)
         try? context.save()
         dismiss()
+    }
+}
+
+private struct IndexedExercise: Identifiable {
+    let index: Int
+    let exercise: ExerciseSession
+
+    var id: PersistentIdentifier {
+        exercise.id
     }
 }
 

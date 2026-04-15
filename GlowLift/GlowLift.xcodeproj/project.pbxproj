@@ -80,20 +80,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		GRPROOT /* GlowLift */ = {
+		GRPCHAT /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				GRPMAIN /* GlowLift */,
-				GRPPRODS /* Products */,
+				FA000025 /* ChatView.swift */,
+				FA000026 /* ChatThreadView.swift */,
 			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
-		GRPPRODS /* Products */ = {
+		GRPCOMPONENTS /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				FAPROD001 /* GlowLift.app */,
+				FA000016 /* GlowCard.swift */,
+				FA000017 /* ExerciseIcon.swift */,
+				FA000018 /* FloatingRestTimer.swift */,
 			);
-			name = Products;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		GRPHISTORY /* History */ = {
+			isa = PBXGroup;
+			children = (
+				FA000023 /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		GRPHOME /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FA000019 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		GRPMAIN /* GlowLift */ = {
@@ -111,14 +130,6 @@
 			path = GlowLift;
 			sourceTree = "<group>";
 		};
-		GRPTHEME /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				FA000003 /* GlowTheme.swift */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
 		GRPMODELS /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +141,38 @@
 				FA000009 /* UserPreferences.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		GRPPRODS /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAPROD001 /* GlowLift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GRPPROGRESS /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				FA000024 /* ProgressView.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		GRPROOT = {
+			isa = PBXGroup;
+			children = (
+				GRPMAIN /* GlowLift */,
+				GRPPRODS /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GRPSEED /* SeedData */ = {
+			isa = PBXGroup;
+			children = (
+				FA000010 /* DefaultTemplates.swift */,
+			);
+			path = SeedData;
 			sourceTree = "<group>";
 		};
 		GRPSERVICES /* Services */ = {
@@ -144,22 +187,38 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		GRPSEED /* SeedData */ = {
+		GRPSETTINGS /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				FA000010 /* DefaultTemplates.swift */,
+				FA000028 /* SettingsView.swift */,
 			);
-			path = SeedData;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		GRPCOMPONENTS /* Components */ = {
+		GRPTEMPLATES /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				FA000016 /* GlowCard.swift */,
-				FA000017 /* ExerciseIcon.swift */,
-				FA000018 /* FloatingRestTimer.swift */,
+				FA000027 /* TemplateEditorView.swift */,
 			);
-			path = Components;
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		GRPTHEME /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				FA000003 /* GlowTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		GRPTRAIN /* Train */ = {
+			isa = PBXGroup;
+			children = (
+				FA000020 /* WorkoutSelectionView.swift */,
+				FA000021 /* ActiveWorkoutView.swift */,
+				FA000022 /* SetLoggingSheet.swift */,
+			);
+			path = Train;
 			sourceTree = "<group>";
 		};
 		GRPVIEWS /* Views */ = {
@@ -174,65 +233,6 @@
 				GRPSETTINGS /* Settings */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		GRPHOME /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				FA000019 /* HomeView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		GRPTRAIN /* Train */ = {
-			isa = PBXGroup;
-			children = (
-				FA000020 /* WorkoutSelectionView.swift */,
-				FA000021 /* ActiveWorkoutView.swift */,
-				FA000022 /* SetLoggingSheet.swift */,
-			);
-			path = Train;
-			sourceTree = "<group>";
-		};
-		GRPHISTORY /* History */ = {
-			isa = PBXGroup;
-			children = (
-				FA000023 /* HistoryView.swift */,
-			);
-			path = History;
-			sourceTree = "<group>";
-		};
-		GRPPROGRESS /* Progress */ = {
-			isa = PBXGroup;
-			children = (
-				FA000024 /* ProgressView.swift */,
-			);
-			path = Progress;
-			sourceTree = "<group>";
-		};
-		GRPCHAT /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				FA000025 /* ChatView.swift */,
-				FA000026 /* ChatThreadView.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		GRPTEMPLATES /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-				FA000027 /* TemplateEditorView.swift */,
-			);
-			path = Templates;
-			sourceTree = "<group>";
-		};
-		GRPSETTINGS /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				FA000028 /* SettingsView.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,9 +463,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 363KSX844J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "For progress ics";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -491,9 +492,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 363KSX844J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "For progress ics";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -514,20 +516,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BCLPROJ /* Build configuration list for PBXProject "GlowLift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BCDBG /* Debug */,
-				BCREL /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		BCLMAIN /* Build configuration list for PBXNativeTarget "GlowLift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCTDBG /* Debug */,
 				BCTREL /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCLPROJ /* Build configuration list for PBXProject "GlowLift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCDBG /* Debug */,
+				BCREL /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
