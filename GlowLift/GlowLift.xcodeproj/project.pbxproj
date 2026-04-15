@@ -36,6 +36,7 @@
 		AA000026 /* ChatThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000026 /* ChatThreadView.swift */; };
 		AA000027 /* TemplateEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000027 /* TemplateEditorView.swift */; };
 		AA000028 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000028 /* SettingsView.swift */; };
+		AA000030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA000030 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		FA000026 /* ChatThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThreadView.swift; sourceTree = "<group>"; };
 		FA000027 /* TemplateEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorView.swift; sourceTree = "<group>"; };
 		FA000028 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FA000030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAPROD001 /* GlowLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlowLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 			children = (
 				FA000001 /* GlowLiftApp.swift */,
 				FA000002 /* ContentView.swift */,
+				FA000030 /* Assets.xcassets */,
 				GRPTHEME /* Theme */,
 				GRPMODELS /* Models */,
 				GRPSERVICES /* Services */,
@@ -296,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA000030 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
