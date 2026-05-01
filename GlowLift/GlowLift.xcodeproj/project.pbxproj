@@ -37,6 +37,11 @@
 		AA000027 /* TemplateEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000027 /* TemplateEditorView.swift */; };
 		AA000028 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA000028 /* SettingsView.swift */; };
 		AA000030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA000030 /* Assets.xcassets */; };
+		AAWGT001 /* RestTimerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAWGT001 /* RestTimerLiveActivity.swift */; };
+		AAWGT002 /* RestTimerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAWGT002 /* RestTimerWidgetBundle.swift */; };
+		AAWGT003 /* RestTimerAttributes.swift in Sources (App) */ = {isa = PBXBuildFile; fileRef = FAWGT003 /* RestTimerAttributes.swift */; };
+		AAWGT004 /* RestTimerAttributes.swift in Sources (Widget) */ = {isa = PBXBuildFile; fileRef = FAWGT003 /* RestTimerAttributes.swift */; };
+		AAWGT005 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAWGT004 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +75,11 @@
 		FA000027 /* TemplateEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorView.swift; sourceTree = "<group>"; };
 		FA000028 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FA000030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAWGT001 /* RestTimerLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerLiveActivity.swift; sourceTree = "<group>"; };
+		FAWGT002 /* RestTimerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerWidgetBundle.swift; sourceTree = "<group>"; };
+		FAWGT003 /* RestTimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerAttributes.swift; sourceTree = "<group>"; };
+		FAWGT004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAWGT005 /* RestTimerWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RestTimerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAPROD001 /* GlowLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlowLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				FA000004 /* ExerciseDefinition.swift */,
+				FAWGT003 /* RestTimerAttributes.swift */,
 				FA000005 /* WorkoutTemplate.swift */,
 				FA000006 /* WorkoutSession.swift */,
 				FA000007 /* StreakModels.swift */,
@@ -153,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				FAPROD001 /* GlowLift.app */,
+				FAWGT005 /* RestTimerWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,8 +181,19 @@
 			isa = PBXGroup;
 			children = (
 				GRPMAIN /* GlowLift */,
+				GRPWIDGET /* RestTimerWidget */,
 				GRPPRODS /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		GRPWIDGET /* RestTimerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				FAWGT001 /* RestTimerLiveActivity.swift */,
+				FAWGT002 /* RestTimerWidgetBundle.swift */,
+				FAWGT004 /* Info.plist */,
+			);
+			path = RestTimerWidget;
 			sourceTree = "<group>";
 		};
 		GRPSEED /* SeedData */ = {
@@ -243,6 +266,24 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXContainerItemProxy section */
+		PROXY_W001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PROJROOT /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGTWIDGET;
+			remoteInfo = RestTimerWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		TDEP_W001 /* RestTimerWidget */ = {
+			isa = PBXTargetDependency;
+			target = TGTWIDGET /* RestTimerWidget */;
+			targetProxy = PROXY_W001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXNativeTarget section */
 		TGTMAIN /* GlowLift */ = {
 			isa = PBXNativeTarget;
@@ -255,11 +296,28 @@
 			buildRules = (
 			);
 			dependencies = (
+				TDEP_W001 /* RestTimerWidget */,
 			);
 			name = GlowLift;
 			productName = GlowLift;
 			productReference = FAPROD001 /* GlowLift.app */;
 			productType = "com.apple.product-type.application";
+		};
+		TGTWIDGET /* RestTimerWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCLWIDGET /* Build configuration list for PBXNativeTarget "RestTimerWidget" */;
+			buildPhases = (
+				BPSP_W001 /* Sources */,
+				BPRP_W001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RestTimerWidget;
+			productName = RestTimerWidget;
+			productReference = FAWGT005 /* RestTimerWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -290,6 +348,7 @@
 			projectRoot = "";
 			targets = (
 				TGTMAIN /* GlowLift */,
+				TGTWIDGET /* RestTimerWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +359,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA000030 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPRP_W001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAWGT005 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +406,17 @@
 				AA000026 /* ChatThreadView.swift in Sources */,
 				AA000027 /* TemplateEditorView.swift in Sources */,
 				AA000028 /* SettingsView.swift in Sources */,
+				AAWGT003 /* RestTimerAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPSP_W001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAWGT001 /* RestTimerLiveActivity.swift in Sources */,
+				AAWGT002 /* RestTimerWidgetBundle.swift in Sources */,
+				AAWGT004 /* RestTimerAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +546,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -497,6 +577,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -523,12 +605,71 @@
 		};
 /* End XCBuildConfiguration section */
 
+		BCDBG_W /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 363KSX844J;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RestTimerWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.glowlift.app.RestTimerWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BCREL_W /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 363KSX844J;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RestTimerWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.glowlift.app.RestTimerWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* Begin XCConfigurationList section */
 		BCLMAIN /* Build configuration list for PBXNativeTarget "GlowLift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCTDBG /* Debug */,
 				BCTREL /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCLWIDGET /* Build configuration list for PBXNativeTarget "RestTimerWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCDBG_W /* Debug */,
+				BCREL_W /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

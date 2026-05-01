@@ -2,10 +2,7 @@ import Foundation
 import Combine
 import UserNotifications
 import UIKit
-
-// MARK: - Rest Timer Manager
-// Observable singleton managing the rest timer.
-// Persists across tab changes via floating overlay.
+import ActivityKit
 
 @MainActor
 final class RestTimerManager: ObservableObject {
@@ -21,8 +18,8 @@ final class RestTimerManager: ObservableObject {
     private var timer: AnyCancellable?
     private var startDate: Date?
     private var pausedRemaining: Int?
+    private var liveActivity: Activity<RestTimerAttributes>?
 
-    // Preset durations
     static let presets: [Int] = [60, 90, 120, 180]
     static let presetLabels: [String] = ["1:00", "1:30", "2:00", "3:00"]
 
@@ -45,20 +42,16 @@ final class RestTimerManager: ObservableObject {
             }
 
         scheduleNotification(after: TimeInterval(seconds))
+        startLiveActivity(seconds: seconds)
     }
 
-    // MARK: - Restart
     func restart() {
         start(seconds: totalSeconds)
     }
 
     // MARK: - Pause / Resume
     func togglePause() {
-        if isPaused {
-            resume()
-        } else {
-            pause()
-        }
+        if isPaused { resume() } else { pause() }
     }
 
     func pause() {
@@ -67,6 +60,7 @@ final class RestTimerManager: ObservableObject {
         isPaused = true
         timer?.cancel()
         cancelNotification()
+        updateLiveActivity(paused: true)
     }
 
     func resume() {
@@ -80,6 +74,7 @@ final class RestTimerManager: ObservableObject {
                 self.tick()
             }
         scheduleNotification(after: TimeInterval(rem))
+        updateLiveActivity(paused: false, newEndDate: Date().addingTimeInterval(TimeInterval(rem)))
     }
 
     // MARK: - Skip / Stop
@@ -94,6 +89,7 @@ final class RestTimerManager: ObservableObject {
         isRunning = false
         isPaused = false
         cancelNotification()
+        endLiveActivity()
     }
 
     func dismiss() {
@@ -102,7 +98,6 @@ final class RestTimerManager: ObservableObject {
         completedOnce = false
     }
 
-    // MARK: - Quick-add seconds
     func addTime(_ seconds: Int) {
         remainingSeconds = min(remainingSeconds + seconds, 600)
         cancelNotification()
@@ -122,14 +117,12 @@ final class RestTimerManager: ObservableObject {
     private func timerCompleted() {
         stop()
         completedOnce = true
-        isVisible = true   // keep visible so user sees it finished
-
-        // Haptic
+        isVisible = true
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
 
-    // MARK: - Display helpers
+    // MARK: - Display
     var displayTime: String {
         let m = remainingSeconds / 60
         let s = remainingSeconds % 60
@@ -143,7 +136,7 @@ final class RestTimerManager: ObservableObject {
 
     var progressColor: String {
         let ratio = Double(remainingSeconds) / Double(totalSeconds)
-        if ratio > 0.5 { return "#A855F7" }
+        if ratio > 0.5 { return "#4ADE80" }
         if ratio > 0.25 { return "#FBBF24" }
         return "#F87171"
     }
@@ -156,7 +149,6 @@ final class RestTimerManager: ObservableObject {
         content.body = "Time to hit your next set!"
         content.sound = .default
         content.interruptionLevel = .timeSensitive
-
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(seconds, 1), repeats: false)
         let request = UNNotificationRequest(identifier: "restTimer", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
@@ -166,8 +158,44 @@ final class RestTimerManager: ObservableObject {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["restTimer"])
     }
 
-    // MARK: - Permission request
     static func requestNotificationPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+    }
+
+    // MARK: - Live Activity
+    private func startLiveActivity(seconds: Int) {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        let endDate = Date().addingTimeInterval(TimeInterval(seconds))
+        let state = RestTimerAttributes.ContentState(
+            endDate: endDate,
+            totalSeconds: seconds,
+            isPaused: false,
+            pausedRemaining: seconds
+        )
+        let content = ActivityContent(state: state, staleDate: endDate.addingTimeInterval(10))
+        liveActivity = try? Activity.request(attributes: RestTimerAttributes(), content: content)
+    }
+
+    private func updateLiveActivity(paused: Bool, newEndDate: Date? = nil) {
+        guard let activity = liveActivity else { return }
+        let end = newEndDate ?? activity.content.state.endDate
+        let state = RestTimerAttributes.ContentState(
+            endDate: end,
+            totalSeconds: totalSeconds,
+            isPaused: paused,
+            pausedRemaining: remainingSeconds
+        )
+        let content = ActivityContent(state: state, staleDate: nil)
+        Task { await activity.update(content) }
+    }
+
+    private func endLiveActivity() {
+        guard let activity = liveActivity else { return }
+        let state = activity.content.state
+        let content = ActivityContent(state: state, staleDate: nil)
+        Task {
+            await activity.end(content, dismissalPolicy: .immediate)
+            liveActivity = nil
+        }
     }
 }

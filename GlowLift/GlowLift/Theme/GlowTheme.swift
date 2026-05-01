@@ -1,61 +1,57 @@
 import SwiftUI
 
-// MARK: - GlowLift Design System
-
 struct GlowTheme {
-    // MARK: Colors
     struct Colors {
-        static let background       = Color(hex: "#0A0A0F")
-        static let surface          = Color(hex: "#12121A")
-        static let surfaceElevated  = Color(hex: "#1A1A26")
-        static let surfaceCard      = Color(hex: "#16162080")
+        static let background       = Color(hex: "#080F0A")
+        static let surface          = Color(hex: "#0D1510")
+        static let surfaceElevated  = Color(hex: "#142018")
+        static let surfaceCard      = Color(hex: "#10180E80")
 
-        static let purple           = Color(hex: "#A855F7")
-        static let purpleLight      = Color(hex: "#C084FC")
-        static let purpleDim        = Color(hex: "#7C3AED")
-        static let purpleGlow       = Color(hex: "#A855F7").opacity(0.35)
-        static let purpleDeep       = Color(hex: "#4C1D95")
+        static let purple           = Color(hex: "#4ADE80")
+        static let purpleLight      = Color(hex: "#86EFAC")
+        static let purpleDim        = Color(hex: "#16A34A")
+        static let purpleGlow       = Color(hex: "#4ADE80").opacity(0.35)
+        static let purpleDeep       = Color(hex: "#052E16")
 
-        static let accent            = Color(hex: "#E879F9")
+        static let accent            = Color(hex: "#34D399")
         static let accentBlue        = Color(hex: "#818CF8")
 
         static let textPrimary       = Color.white
-        static let textSecondary     = Color(hex: "#A0A0C0")
-        static let textTertiary      = Color(hex: "#6060A0")
-        static let textMuted         = Color(hex: "#404060")
+        static let textSecondary     = Color(hex: "#A0C0A8")
+        static let textTertiary      = Color(hex: "#608070")
+        static let textMuted         = Color(hex: "#3A5040")
 
-        static let success           = Color(hex: "#34D399")
+        static let success           = Color(hex: "#4ADE80")
         static let warning           = Color(hex: "#FBBF24")
         static let error             = Color(hex: "#F87171")
         static let info              = Color(hex: "#60A5FA")
 
-        static let timerActive       = Color(hex: "#A855F7")
+        static let timerActive       = Color(hex: "#4ADE80")
         static let timerWarning      = Color(hex: "#FBBF24")
         static let timerCritical     = Color(hex: "#F87171")
 
         static let gradientPurple    = LinearGradient(
-            colors: [Color(hex: "#7C3AED"), Color(hex: "#A855F7")],
+            colors: [Color(hex: "#16A34A"), Color(hex: "#4ADE80")],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
         static let gradientAccent    = LinearGradient(
-            colors: [Color(hex: "#A855F7"), Color(hex: "#E879F9")],
+            colors: [Color(hex: "#4ADE80"), Color(hex: "#86EFAC")],
             startPoint: .leading,
             endPoint: .trailing
         )
         static let gradientBackground = LinearGradient(
-            colors: [Color(hex: "#0A0A0F"), Color(hex: "#0F0A1A")],
+            colors: [Color(hex: "#080F0A"), Color(hex: "#08120A")],
             startPoint: .top,
             endPoint: .bottom
         )
         static let gradientCard = LinearGradient(
-            colors: [Color(hex: "#1A1A2E"), Color(hex: "#12121A")],
+            colors: [Color(hex: "#0D1F15"), Color(hex: "#080F0A")],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
     }
 
-    // MARK: Typography
     struct Fonts {
         static func display(_ size: CGFloat) -> Font {
             .system(size: size, weight: .black, design: .rounded)
@@ -80,7 +76,6 @@ struct GlowTheme {
         }
     }
 
-    // MARK: Spacing
     struct Spacing {
         static let xs: CGFloat  = 4
         static let sm: CGFloat  = 8
@@ -90,7 +85,6 @@ struct GlowTheme {
         static let xxl: CGFloat = 48
     }
 
-    // MARK: Corner Radii
     struct Radius {
         static let sm: CGFloat  = 8
         static let md: CGFloat  = 12
@@ -100,7 +94,6 @@ struct GlowTheme {
     }
 }
 
-// MARK: - Color Hex Extension
 extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -127,7 +120,6 @@ extension Color {
     }
 }
 
-// MARK: - Glow Modifiers
 struct GlowEffect: ViewModifier {
     var color: Color = GlowTheme.Colors.purple
     var radius: CGFloat = 12

@@ -25,7 +25,7 @@ enum WorkoutType: String, Codable, CaseIterable, Identifiable {
 
     var colorHex: String {
         switch self {
-        case .pushA:  return "#A855F7"
+        case .pushA:  return "#4ADE80"
         case .pullA:  return "#818CF8"
         case .legsA:  return "#34D399"
         case .pushB:  return "#E879F9"
